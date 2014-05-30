@@ -3,35 +3,59 @@ import ddf.minim.*;
 Minim minim;
 AudioPlayer player;
 Boolean stop = true;
+//samples[]
 
+PImage img;
+int y;
+
+PImage oImg;
+  
 void setup()
 {
-  size(512, 100, P3D);
+  //size(1390, 1333);
+  size(695,667);
+  img = loadImage("1_small.jpeg");
+  //size(512, 100); 
   minim = new Minim(this);
   player = minim.loadFile("eitr.mp3");
   player.play();
+  oImg = loadImage("1_small.jpeg");
+  size(oImg.width, oImg.height); 
 }
 
 void draw()
 {
-  
   if (stop==true){
-    background(0);
-  }
-  stroke(255);
-  
+    //background(0);
+    //image(img, 0, 0);
+  } 
+  stroke(0);
+  //--------------------
+  pushMatrix();
+  translate(0,height/3);
   
   if (stop==true){
     for(int i = 0; i < player.bufferSize() - 1; i++)
     {
       float x1 = map( i, 0, player.bufferSize(), 0, width );
       float x2 = map( i+1, 0, player.bufferSize(), 0, width );
-      //println(x1 + "/" + x2);
-      line( x1, 50 + player.left.get(i)*50, x2, 50 + player.left.get(i+1)*50 );
-      //line( x1, 150 + player.right.get(i)*50, x2, 150 + player.right.get(i+1)*50 );
+      //line( x1, 50 + player.left.get(i)*50, x2, 50 + player.left.get(i+1)*50 );
+      //deleted//line( x1, 150 + player.right.get(i)*50, x2, 150 + player.right.get(i+1)*50 );
     }
-  
   }
+  //--------------------
+  popMatrix();
+  int chops = 10; 
+  for(int i=0; i<chops; i++){
+   //copy(src, sx, sy, sw, sh, dx, dy, dw, dh)
+   pushMatrix();
+   translate(0,random(-50,50));
+   if (i==0) copy(oImg, (oImg.width/chops)*i,0,(oImg.width/chops)*(i+1),oImg.height,    0,0,(oImg.width)/chops,oImg.height);
+   else {
+     copy(oImg, (oImg.width/chops)*i,0,(oImg.width/chops)*(i),oImg.height,    (oImg.width/chops)*i,0,(oImg.width/chops)*(i+0),oImg.height);
+   }
+   popMatrix();
+ }  
 }
 
 
@@ -45,14 +69,6 @@ void keyPressed()
 
 
 /*
-PImage img;
-int y;
-
-void setup() {
-  size(1390, 1333);
-  
-  img = loadImage("1.jpeg");
-}
 
 void draw() {
   //background(img);
