@@ -2,6 +2,7 @@ import ddf.minim.*;
 
 Minim minim;
 AudioPlayer player;
+float[] sound_array = null;
 Boolean stop = true;
 int chops = 10; 
 
@@ -21,6 +22,7 @@ void setup()
   player.play();
   oImg = loadImage("1_small.jpeg");
   size(oImg.width, oImg.height); 
+  sound_array = new float[player.bufferSize()];
 }
 
 void draw()
@@ -31,8 +33,9 @@ void draw()
     {
       float x1 = map( i, 0, player.bufferSize(), 0, width ); //check if belongs to chop, if so, store?
       float x2 = map( i+1, 0, player.bufferSize(), 0, width );
+      sound_array[i] = x1;
     }
-  }
+  
   //--------------------
   //if (stop==true){
     //background(0);
@@ -43,6 +46,7 @@ void draw()
      //copy(src, sx, sy, sw, sh, dx, dy, dw, dh)
      pushMatrix();
      translate(0,random(-50,50));
+     //translate(0,sound_array[i]);
      if (i==0) copy(oImg, (oImg.width/chops)*i,0,(oImg.width/chops)*(i+1),oImg.height,    0,0,(oImg.width)/chops,oImg.height);
      else {
        copy(oImg, (oImg.width/chops)*i,0,(oImg.width/chops)*(i),oImg.height,    (oImg.width/chops)*i,0,(oImg.width/chops)*(i+0),oImg.height);
@@ -63,6 +67,7 @@ void draw()
   }
   popMatrix();
   //--------------------
+  }
 }
 
 
