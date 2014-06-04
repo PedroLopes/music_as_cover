@@ -12,19 +12,11 @@ int y;
 PImage oImg;
   
 void setup()
-{ //uncomment the size you want
-  //size(1390, 1333); //largest
-  //img = loadImage("1.jpeg");
-  //oImg = loadImage("1.jpeg");
-  //----------------------
-  size(1440, 900); //macair resolution
+{ 
+  size(1440, 900); 
   img = loadImage("1_medium.jpeg");
   oImg = loadImage("1_medium.jpeg");
-  //----------------------
-  //size(695,667); //small for testing
-  //img = loadImage("1_small.jpeg");
-  //oImg = loadImage("1_small.jpeg");
-  //----------------------
+  
   minim = new Minim(this);
   player = minim.loadFile("eitr.mp3");
   player.play();
