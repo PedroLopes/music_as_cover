@@ -33,7 +33,7 @@ void draw()
     {
       int select_chop = i%chops;
       translates[select_chop] = (player.left.get(i+0) + player.left.get(i+1))/2  * max_translate; 
-      println(select_chop+ " / " + translates[select_chop]);  
+      //println(select_chop+ " / " + translates[select_chop]);  
     }
   
   //-------------------- stop if we press spacebar
@@ -57,7 +57,7 @@ void draw()
   pushMatrix();
   translate(0,height/2-50);
   if (stop==true){
-    println(player.bufferSize());
+    //println(player.bufferSize());
     for(int i = 0; i < player.bufferSize() - 1; i++)
     {
       float x1 = map( i, 0, player.bufferSize(), 0, width );
