@@ -21,7 +21,6 @@ void setup()
   player = minim.loadFile("eitr.mp3");
   player.play();
   
-  size(oImg.width, oImg.height); 
   translates = new float[chops];
   max_translate = height/3;
 }
